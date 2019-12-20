@@ -1,0 +1,432 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>sikulix.sikuli</h2> <a href="sikulix.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">def</span> log_a(ee,e3=<span class="str">''</span>):
+    log = <span class="str">'[%s] %s\n'</span> % (time.strftime(<span class="str">"%Y-%m-%d %I:%M:%S"</span>), str(ee)+str(e3))
+    f = open(<span class="str">'log.txt'</span>, <span class="str">'a'</span>)
+    f.write(log)
+    f.close()
+<span class="cmt">#------------------------------------------
+</span><span class="kw">def</span> exists_click(image ,time=<span class="dig">5</span>,sleep_time=<span class="dig">0.3</span>):
+    exists(image,time)
+    <span class="skw">click</span>(image)
+    <span class="skw">sleep</span>(sleep_time)
+    <span class="kw">return</span> <span class="dig">0</span>
+<span class="cmt">#------------------------------------------
+</span><span class="kw">def</span> exists_click_not_move(image ,aims ,exists_time=<span class="dig">5</span> ,interval=<span class="dig">0.5</span> ,frequency=<span class="dig">3</span>):
+    exists(image,exists_time)
+    frequency = <span class="dig">0</span>
+    <span class="kw">while</span> <span class="dig">1</span>:
+        result = <span class="skw">find</span>(image)
+        first_xy = get_xy(result)
+        <span class="skw">sleep</span>(interval)
+        result = <span class="skw">find</span>(image)
+        second_xy = get_xy(result)
+        ens1 = first_xy[<span class="dig">0</span>] == second_xy[<span class="dig">0</span>]
+        ens2 = first_xy[<span class="dig">1</span>] == second_xy[<span class="dig">1</span>]
+        <span class="kw">if</span> ens1 == ens2:
+            frequency += <span class="dig">1</span>
+        <span class="kw">else</span>:
+            frequency = <span class="dig">0</span>
+        <span class="kw">if</span> frequency&gt;=aims:
+            <span class="skw">click</span>(image)
+            <span class="kw">return</span> <span class="dig">0</span>
+<span class="cmt">#------------------------------------------
+</span><span class="kw">def</span> click_to_fighting():
+    exists_click(<img src="1530207110217.png" />,sleep_time=<span class="dig">0.3</span>)
+    exists_click(Pattern(<img src="1530231003617.png" />).similar(<span class="dig">0.81</span>),sleep_time=<span class="dig">0.3</span>)
+    exists_click(<img src="1530231191185.png" />,sleep_time=<span class="dig">0.3</span>)
+    exists_click(<img src="1530231201713.png" />,sleep_time=<span class="dig">0.3</span>)
+    exists_click(<img src="1530231284750.png" />,sleep_time=<span class="dig">0.3</span>)
+    exists_click(Pattern(<img src="1530207264056.png" />).similar(<span class="dig">0.61</span>) ,time=<span class="dig">18</span> ,sleep_time=<span class="dig">0.3</span>)
+    exists_click_not_move(<img src="1530114965937.png" />,<span class="dig">2</span>)
+    exists_click_not_move(<img src="1530231763456.png" />,<span class="dig">2</span>)
+    <span class="kw">return</span> <span class="dig">0</span>
+<span class="cmt">#------------------------------------------
+</span><span class="kw">def</span> zzz():
+    z = <span class="dig">0</span>
+    <span class="kw">while</span> <span class="dig">1</span>:
+        image = <img src="1530113389303.png" />
+        <span class="skw">sleep</span>(<span class="dig">5</span>)
+        <span class="kw">if</span> <span class="kw">not</span> exists(<img src="1530119289139.png" />,<span class="dig">5</span>):
+           first_innings()
+        <span class="kw">if</span> exists(image,<span class="dig">5</span>):
+            vul3 = <span class="skw">find</span>(image)
+            z += <span class="dig">1</span>
+            log_a(<span class="str">"zzz = "</span>,z)
+            mouseMove(vul3)  <span class="cmt"># .targetOffset(-1,103)</span>
+            mouseMove(<span class="dig">0</span>, <span class="dig">100</span>)
+            mouseDown(Button.LEFT)
+            <span class="skw">sleep</span>(<span class="dig">0.5</span>)
+            mouseMove(-<span class="dig">40</span>,<span class="dig">0</span>)
+            mouseUp(Button.LEFT)
+        <span class="kw">else</span>:
+            <span class="kw">print</span>(<span class="str">"一局結束，收尾中!"</span>)
+            <span class="skw">sleep</span>(<span class="dig">7</span>)
+            exists(<img src="1530110300148.png" />,<span class="dig">12</span>)
+            exists(<img src="1530111465100.png" />,<span class="dig">15</span>)
+            <span class="skw">click</span>(<img src="1530109338588.png" />)
+            <span class="skw">sleep</span>(<span class="dig">1</span>)
+            <span class="kw">if</span>  exists(<img src="1530111576491.png" />,<span class="dig">5</span>):
+                <span class="skw">click</span>(<img src="1530111606355.png" />)
+
+            exists(<img src="1530111625291.png" />,<span class="dig">5</span>)
+
+            <span class="skw">click</span>(<img src="1530109393282.png" />)
+            <span class="skw">sleep</span>(<span class="dig">1</span>)
+            exists(<img src="1530109412706.png" />,<span class="dig">5</span>)
+            <span class="skw">click</span>(<img src="1530109412706.png" />)
+            <span class="kw">break</span>
+    <span class="kw">return</span> <span class="dig">0</span>
+
+
+<span class="cmt">#------------------------------------------
+</span><span class="kw">def</span> first_innings():
+    <span class="skw">sleep</span>(<span class="dig">5</span>)
+    <span class="kw">if</span> exists(<img src="1530110042059.png" />,<span class="dig">15</span>):
+        exists(leader,<span class="dig">10</span>)
+        top = <span class="skw">find</span>(leader)
+        exists(Pattern(<img src="1530092208377.png" />).targetOffset(<span class="dig">127</span>,<span class="dig">1</span>))
+        down = <span class="skw">find</span>(Pattern(<img src="1530432991919.png" />).targetOffset(<span class="dig">128</span>,<span class="dig">1</span>))
+        log_a(top)
+        log_a(down)
+
+        exists(<img src="1530110928091.png" />,<span class="dig">7</span>)
+        dark_bead_list ,dark_list_obj = get_all_bead(<img src="1530089249612.png" />)
+
+        exists(<img src="1530111023346.png" />,<span class="dig">7</span>)
+        green_bead_list ,green_list_obj = get_all_bead(<img src="1530091267784.png" />)
+
+        log_a(<span class="str">"dark_bead_list："</span>)
+        log_a(dark_bead_list)
+        log_a(<span class="str">"green_bead_list："</span>)
+        log_a(green_bead_list)
+        log_a(<span class="str">"-----------------------------"</span>)
+
+        <span class="cmt">#資料蒐集完畢^
+</span>        DorG = select_DorG(dark_bead_list ,green_bead_list)
+        log_a(<span class="str">"1111"</span>)
+        table ,move_w_len ,move_h_len = full_and_get_table(top ,dark_bead_list ,green_bead_list ,down ,DorG)
+        <span class="cmt">#score = get_score(table)
+</span>        log_a(<span class="str">"2222"</span>)
+        <span class="kw">if</span> DorG != <span class="dig">0</span>:
+            <span class="kw">if</span> DorG == <span class="dig">1</span>:<span class="cmt">#暗</span>
+                aims_obj = dark_list_obj
+                log_a(<span class="str">"aims_obj = dark_list_obj"</span>)
+            <span class="kw">else</span>:
+                aims_obj = green_list_obj
+                log_a(<span class="str">"aims_obj = green_list_obj"</span>)
+
+            s = <span class="dig">0</span>
+            cl = <span class="dig">0</span>
+            max = len(aims_obj)
+            <span class="kw">while</span> s&lt;<span class="dig">3</span>:
+                <span class="skw">sleep</span>(<span class="dig">10</span>)
+                <span class="kw">if</span> exists(<img src="1530119289139.png" />,<span class="dig">5</span>):
+                    ans = <span class="skw">find</span>(<img src="1530119289139.png" />)
+                    score = ans.getScore()
+                    log_a(<span class="str">"score = "</span>,score)
+
+                    <span class="kw">if</span> score&gt;<span class="dig">0.9</span>:
+                        <span class="kw">print</span>(<span class="str">"已進入特殊排列"</span>)
+                        <span class="kw">return</span> <span class="dig">0</span>
+                <span class="kw">if</span> DorG == <span class="dig">1</span>:<span class="cmt">#暗</span>
+                    dark_bead_list ,dark_list_obj = get_all_bead(<img src="1530089249612.png" />)
+                    log_a(<span class="str">"dark_bead_list："</span>)
+                    log_a(dark_bead_list)
+                <span class="kw">else</span>:
+                    green_bead_list ,green_list_obj = get_all_bead(<img src="1530091267784.png" />)
+                    log_a(<span class="str">"green_bead_list："</span>)
+                    log_a(green_bead_list)
+                <span class="kw">print</span>(<span class="str">"-----------------------------"</span>)
+                <span class="cmt">#資料蒐集完畢^
+</span>                <span class="cmt">#DorG = select_DorG(dark_bead_list ,green_bead_list)
+</span>                table ,move_w_len ,move_h_len = full_and_get_table(top ,dark_bead_list ,green_bead_list ,down ,DorG)
+
+                <span class="kw">if</span> s == <span class="dig">0</span>:
+                    log_a(<span class="str">"s = "</span>,s)
+                    e = click_bead_form_xy(table,col=<span class="dig">5</span>,row=<span class="dig">4</span>)
+
+                    <span class="kw">if</span> e == <span class="dig">0</span>:
+                        mouseMove(aims_obj[cl])
+                        mouseDown(Button.LEFT)
+                        mouseMove(Pattern(<img src="1530433107636.png" />).targetOffset(<span class="dig">112</span>,-<span class="dig">39</span>))
+                        mouseUp(Button.LEFT)
+                        <span class="cmt">#s += e
+</span>                        <span class="cmt">#n=n+1
+</span>                    <span class="kw">else</span>:
+                        s += <span class="dig">1</span>
+                <span class="kw">if</span> s == <span class="dig">1</span>:
+                    log_a(<span class="str">"s = "</span>,s)
+                    e = click_bead_form_xy(table,col=<span class="dig">4</span>,row=<span class="dig">4</span>)
+
+                    <span class="kw">if</span> e == <span class="dig">0</span>:
+                        mouseMove(aims_obj[cl])
+                        mouseDown(Button.LEFT)
+                        mouseMove(Pattern(<img src="1530433120996.png" />).targetOffset(<span class="dig">64</span>,-<span class="dig">44</span>))
+                        mouseUp(Button.LEFT)
+                        <span class="cmt">#s += e
+</span>                    <span class="kw">else</span>:
+                        s += <span class="dig">1</span>
+                <span class="kw">if</span> s == <span class="dig">2</span>:
+                    log_a(<span class="str">"s = "</span>,s)
+                    e = click_bead_form_xy(table,col=<span class="dig">3</span>,row=<span class="dig">4</span>)
+
+                    <span class="kw">if</span> e == <span class="dig">0</span>:
+                        mouseMove(aims_obj[cl])
+                        mouseDown(Button.LEFT)
+                        mouseMove(Pattern(<img src="1530433142899.png" />).targetOffset(<span class="dig">22</span>,-<span class="dig">41</span>))
+                        mouseUp(Button.LEFT)
+                        <span class="cmt">#s += e
+</span>                    <span class="kw">else</span>:
+                        s += <span class="dig">1</span>
+                cl += <span class="dig">1</span>
+                <span class="kw">if</span> cl&gt;=max:
+                    cl = <span class="dig">0</span>
+                log_a(<span class="str">"cl = "</span>,cl)
+            <span class="kw">return</span> <span class="dig">0</span>
+        <span class="kw">else</span>:
+            log_a(<span class="str">"珠不夠rrrrrrr"</span>)
+            <span class="kw">return</span> <span class="dig">1</span>
+    <span class="kw">return</span> <span class="dig">0</span>
+<span class="cmt"># x = col_score.index(max(col_score))
+</span><span class="cmt"># y = row_score.index(max(row_score))
+</span><span class="cmt">#------------------------------------------
+</span><span class="kw">def</span> click_bead_form_xy(table,col,row):
+    <span class="kw">if</span> table[row][col] &gt; <span class="dig">0</span>:
+        <span class="kw">return</span> <span class="dig">1</span>
+    <span class="kw">else</span>:
+        <span class="kw">return</span> <span class="dig">0</span>
+
+<span class="cmt">#------------------------------------------
+</span><span class="kw">def</span> get_score(table):
+    col,row
+    col_score = [<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>]
+    row_score = [<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>]
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">6</span>): <span class="cmt">#計算col分數</span>
+        <span class="kw">for</span> j <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">5</span>):
+            <span class="kw">if</span> table[i][j]&gt;<span class="dig">0</span>:
+                col_score[i] += <span class="dig">1</span>
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">5</span>): <span class="cmt">#計算row分數</span>
+        <span class="kw">for</span> j <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">6</span>):
+            <span class="kw">if</span> table[i][j]&gt;<span class="dig">0</span>:
+                row_score[i] += <span class="dig">1</span>
+    <span class="kw">return</span> table
+
+<span class="cmt">#------------------------------------------
+</span><span class="kw">def</span> full_and_get_table(top ,dark_bead_list ,green_bead_list ,down ,DorG):
+    log_a(<span class="str">"3333"</span>)
+    top_xy = get_xy(top)
+    log_a(str(top_xy))
+    down_xy = get_xy(down)
+    log_a(str(down_xy))
+    log_a(down_xy[<span class="dig">0</span>])
+    log_a(<span class="str">"4444"</span>)
+    table_width = int(down_xy[<span class="dig">0</span>]) + int(down_xy[<span class="dig">2</span>]) - int(top_xy[<span class="dig">0</span>])
+    table_high  = int(down_xy[<span class="dig">1</span>]) - int(top_xy[<span class="dig">1</span>])
+    log_a(<span class="str">"table_width = "</span>,table_width)
+    log_a(<span class="str">"table_high = "</span>,table_high)
+    log_a(<span class="str">"5555"</span>)
+    dark_len = len(dark_bead_list)
+    green_len = len(green_bead_list)
+    table = [
+            [<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>],
+            [<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>],
+            [<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>],
+            [<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>],
+            [<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">0</span>]
+            ]
+    <span class="cmt">#0未知 ,1暗 ,2綠
+</span>
+    <span class="cmt">#開始取代table內容以利計算
+</span>    <span class="kw">if</span> DorG == <span class="dig">1</span>:
+        <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,dark_len): <span class="cmt">#1暗</span>
+            log_a(<span class="str">"i = "</span> + str(i))
+            d = get_xy(dark_bead_list[i])
+            log_a(int(d[<span class="dig">0</span>]))
+            log_a(int(top_xy[<span class="dig">0</span>]))
+            log_a(int(table_width))
+
+            log_a(int(d[<span class="dig">1</span>]))
+            log_a(int(top_xy[<span class="dig">1</span>]))
+            log_a(int(table_high))
+
+            lxl = int( int(d[<span class="dig">0</span>]) - int(top_xy[<span class="dig">0</span>]) )
+            lxo = int(table_width) / <span class="dig">6</span>
+
+            col = int( lxl/lxo  )
+            row = int((int(d[<span class="dig">1</span>]) - int(top_xy[<span class="dig">1</span>]))/(int(table_high)  / <span class="dig">5</span>))
+            log_a(<span class="str">"****-----****"</span>)
+            log_a(col)
+            log_a(row)
+            table[row][col] = <span class="dig">1</span>
+    <span class="kw">elif</span> DorG == <span class="dig">2</span>:
+        <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,green_len): <span class="cmt">#2綠</span>
+            log_a(<span class="str">"i = "</span> + str(i))
+            d = get_xy(green_bead_list[i])
+            log_a(int(d[<span class="dig">0</span>]))
+            log_a(int(top_xy[<span class="dig">0</span>]))
+            log_a(int(table_width))
+
+            log_a(int(d[<span class="dig">1</span>]))
+            log_a(int(top_xy[<span class="dig">1</span>]))
+            log_a(int(table_high))
+
+            lxl = int( int(d[<span class="dig">0</span>]) - int(top_xy[<span class="dig">0</span>]) )
+            lxo = int(table_width) / <span class="dig">6</span>
+
+            col = int( lxl/lxo  )
+            row = int((int(d[<span class="dig">1</span>]) - int(top_xy[<span class="dig">1</span>]))/(int(table_high)  / <span class="dig">5</span>))
+            log_a(<span class="str">"****-----****"</span>)
+            log_a(col)
+            log_a(row)
+            table[row][col] = <span class="dig">2</span>
+    <span class="kw">return</span> table ,(table_width / <span class="dig">6</span>) ,(table_high  / <span class="dig">5</span>)
+<span class="cmt">#------------------------------------------
+</span><span class="kw">def</span> select_DorG(dark_bead_list ,green_bead_list):
+    <span class="cmt">#基本資訊
+</span>    dark_len = len(dark_bead_list)
+    green_len = len(green_bead_list)
+
+    <span class="cmt">#基本門檻
+</span>    <span class="kw">if</span> dark_len &lt; <span class="dig">3</span> <span class="kw">and</span> green_len &lt; <span class="dig">3</span>:
+        rt = <span class="dig">0</span>
+        <span class="kw">return</span> rt
+    <span class="kw">if</span> dark_len &lt;= green_len:
+        rt = <span class="dig">2</span>
+    <span class="kw">else</span>:
+        rt = <span class="dig">1</span>
+    <span class="kw">return</span> rt
+
+<span class="cmt">#------------------------------------------    
+</span><span class="kw">def</span> get_all_bead(bead):
+    findAll(bead)
+    bead_list = []
+    bead_list_obj = []
+    mm = SCREEN.getLastMatches()
+    <span class="kw">while</span> mm.hasNext():
+        bead_data = mm.next()
+        log_a(<span class="str">"找到："</span> + str(bead_data))
+        bead_list.append(bead_data)
+        bead_list_obj.append(bead_data)
+    <span class="kw">return</span> bead_list ,bead_list_obj
+<span class="cmt">#------------------------------------------      
+</span><span class="kw">def</span> get_xy(find_obj):
+    r1 = re.compile(<span class="str">'M\[(.+)\]@'</span>)
+    r10 = r1.findall(str(find_obj))
+    r2 = re.compile(<span class="str">'\d+'</span>)
+    r20 = r2.findall(str(r10)) <span class="cmt">#[x,y,w,h]</span>
+    log_a(<span class="str">"***----****"</span>)
+    log_a(str(find_obj))
+    log_a(r10)
+    log_a(r20)
+    log_a(<span class="str">"***^^^^^***"</span>)
+    <span class="kw">return</span> r20
+<span class="cmt">#------------------------------------------
+</span><span class="kw">def</span> main(aims_Quantity):
+    log_a(<span class="str">"=========================="</span>)
+    aq = int(aims_Quantity)
+    log_a(<span class="str">"目標數量為："</span> + str(aq))
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,aq):
+        click_to_fighting()
+        <span class="cmt">#try:
+</span>        exists(<img src="1530110487347.png" />,<span class="dig">6</span>)
+        <span class="cmt">#except:
+</span>        <span class="cmt">#    rt = first_innings(leader)
+</span>        <span class="cmt">#try:
+</span>        rt = first_innings()
+        <span class="cmt">#except:
+</span>        <span class="cmt">#    zzz()
+</span>        <span class="kw">if</span> rt ==<span class="dig">0</span>:
+            zzz()
+        <span class="kw">else</span>:
+            log_a(<span class="str">"QQ請手動解決!"</span>)
+            <span class="kw">return</span> <span class="dig">1</span>
+        <span class="skw">sleep</span>(<span class="dig">1</span>)
+        log_a(<span class="str">"完成數量："</span>,i+<span class="dig">1</span>)
+
+<span class="cmt">#------------------------------------------------------------------
+</span><span class="kw">import</span> re
+leader = Pattern(<img src="leader.png" />).targetOffset(-<span class="dig">18</span>,-<span class="dig">1</span>)
+aims_Quantity = <span class="dig">15</span>
+main(aims_Quantity)
+
+<span class="cmt">#click_to_fighting()
+</span><span class="cmt">#exists("1530110487347.png",16)
+</span><span class="cmt">#first_innings(leader)
+</span><span class="cmt">#try:
+</span><span class="cmt">#zzz()
+</span><span class="cmt">#except Exception :
+</span><span class="cmt">#    log_a(Exception)</span>
+</pre>
+</body>
+</html>
